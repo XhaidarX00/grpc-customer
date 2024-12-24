@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package customer;
+option go_package = "/customer;customer";
+// Service definition for user-related operations
+service UserService {
+  rpc CheckDetailByEmail (CheckEmailRequest) returns (CheckEmailResponse);
+  rpc UpdateUserByEmail (UpdateUserRequest) returns (UpdateUserResponse);
+}
+
+// Request message for checking user details by email
+message CheckEmailRequest {
+  string email = 1;
+}
+
+// Response message for checking user details by email
+message CheckEmailResponse {
+  string message = 1;
+  UserData data = 2;
+}
+
+// Request message for updating user details by email
+message UpdateUserRequest {
+  string email = 1;
+  string name = 2;
+  string password = 3;
+}
+
+// Response message for updating user details by email
+message UpdateUserResponse {
+  string message = 1;
+}
+
+// User data structure
+message UserData {
+  int32 id = 1;
+  string name = 2;
+  string email = 3;
+  string role = 4;
+  string created_at = 5;
+  string updated_at = 6;
+}
